@@ -1,0 +1,22 @@
+mkdir server
+cd server
+npm init -y
+npm i express
+npm i nodemon
+npm i mongoose
+npm i dotenv
+npm i bcryptjs
+npm i jsonwebtoken
+zod
+
+nodemon server.js
+
+
+
+client folder
+
+npm create vite@latest
+cd client
+  npm install
+  npm run dev
+npm i react-router-dom

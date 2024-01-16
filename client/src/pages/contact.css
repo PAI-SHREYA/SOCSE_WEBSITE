@@ -1,0 +1,28 @@
+.contact-image
+{
+    background-image: url("G:\thapar\client\src\pages\contactus.png");
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    /* background-image: url("G:\thapar\client\src\pages\contactus.png"); */
+    /* background-repeat: no-repeat; */
+    width: 80%;
+    height: auto;
+}
+
+
+.container
+    {
+        padding-top: 3.2rem ;
+    }
+h1 {
+    margin-bottom: 3.2rem;
+
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+
+}

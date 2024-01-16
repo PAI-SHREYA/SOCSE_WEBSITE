@@ -1,0 +1,89 @@
+import React, { useState, useEffect } from "react";
+import { getDomains } from "../services/api";
+import { Link } from "react-router-dom";
+import './clubs.css';
+
+
+export const Club = () => {
+  const [search, setSearch] = useState("");
+  const [domains, setDoamins] = useState([]);
+
+  useEffect(() => {
+    getDomains().then((data) => setDoamins(data));
+  }, []);
+
+  const base = "/clubs/";
+
+  const uniqueTypes = [...new Set(domains.map((ele) => ele.type))].sort();
+
+  return (
+    <>
+    <div className="bodycontainer">
+    <div className="card-section">
+        <div className="search-container">
+          <input
+            type="search"
+            placeholder="Search.."
+            name="search"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+          <button type="submit">
+            <i className="fa fa-search"></i>
+          </button>
+        </div>
+        <br></br>
+        <br></br>
+        <div className="card-container">
+          {uniqueTypes.map((type) => (
+            <React.Fragment key={type}>
+              {domains.some((ele) => ele.type === type) && (
+                <>
+                  <h1 className="heading-domains">
+                    {type.charAt(0).toUpperCase() + type.slice(1) + "s"}
+                    <i className="arrow-icon">➞</i>
+                  </h1>
+                  <br></br>
+                </>
+              )}
+
+              {domains
+                .filter(
+                  (ele) =>
+                    ele.type === type &&
+                    (ele.title.toLowerCase().includes(search.toLowerCase()) ||
+                      ele.type.toLowerCase().includes(search.toLowerCase()))
+                )
+                .map((filterDomains) => (
+                  <Link
+                    to={base + filterDomains.path}
+                    style={{ textDecoration: "none" }}
+                    key={filterDomains._id}
+                  >
+                    <div className="card-x">
+                      <div className="card-sidebar">
+                        <img className="card-image" src={filterDomains.image} alt="" />
+                      </div>
+                      <div className="card-main">
+                      <h2 className="card-name">{filterDomains.title}</h2>
+                      <p className="card-body">
+                        {filterDomains.description}
+                      </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+            </React.Fragment>
+          ))}
+          {domains.length === 0 && <div>No Such Data Found</div>}
+        </div>
+      </div>
+    </div>
+      
+    </>
+  );
+};
+
+// export default Domains;
