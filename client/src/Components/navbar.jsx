@@ -6,6 +6,7 @@ import './navbar.css';
 export const Navbar = () =>
 {
   const isLoggedIn = !!localStorage.getItem('token');
+  const Admin = localStorage.getItem('Admin');
   const navigate = useNavigate();
   const handleLogout = () => {
     
@@ -48,9 +49,9 @@ export const Navbar = () =>
             </header> */}
 
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg navbar-expand-md ">
-      <Link to="/" className="navbar-brand ">
+      {/* <Link to="/" className="navbar-brand ">
         ACSES
-      </Link>
+      </Link> */}
 
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav mr-auto">
@@ -83,11 +84,17 @@ export const Navbar = () =>
                       isLoggedIn ? (<li className='navbar-item'> <button onClick={handleLogout}>Logout</button></li> ):
                       (
                         <>
-                          <li className='navbar-item'><Link to="/register" className="nav-link">Register</Link></li>
+                          <li className='navbar-item'><Link to="/register" className="nav-link">Sign Up</Link></li>
                           <li className='navbar-item'><Link to="/login" className="nav-link">Login</Link></li>
                         </>
                       )
                     }
+              {(Admin==="true") ? ( <li className="navbar-item">
+            <Link to="/users" className="nav-link">
+              ViewUsers
+            </Link>
+          </li>):(<></>)}
+                    
                     
         </ul>
       </div>

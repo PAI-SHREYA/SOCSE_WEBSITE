@@ -33,7 +33,7 @@ export const Contact = () =>
                     {/* <img src="G:\thapar\client\src\pages\contactus.png" alt="" /> */}
                 </div>
                 <section className="formcontent">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} className='cont'>
                         <div>
                             <label htmlFor="username">Username</label>
                             <input type="text" name='username' id='username' autoComplete='off' required value={contact.username} onChange={handleInput} />

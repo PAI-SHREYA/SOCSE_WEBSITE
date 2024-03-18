@@ -6,3 +6,8 @@ export const getDomains = async() => {
     return results?.data;
 };
 
+export const addClub = async(body) =>{
+    let results = await axios.post(`http://localhost:3000/api/domain/add`,body)
+    console.log(results?.data,"ress");
+    return results?.data
+ };

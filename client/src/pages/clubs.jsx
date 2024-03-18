@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { getDomains } from "../services/api";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import './clubs.css';
 
-
-export const Club = () => {
+export const Domains = () => {
+  const Admin = localStorage.getItem('Admin');
   const [search, setSearch] = useState("");
   const [domains, setDoamins] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     getDomains().then((data) => setDoamins(data));
@@ -15,6 +17,10 @@ export const Club = () => {
   const base = "/clubs/";
 
   const uniqueTypes = [...new Set(domains.map((ele) => ele.type))].sort();
+
+   const handleSubmit = () => {
+    navigate('/clubs/addclub');
+  };
 
   return (
     <>
@@ -34,9 +40,15 @@ export const Club = () => {
             <i className="fa fa-search"></i>
           </button>
         </div>
+        {(Admin==="true") ?(<div className="Addclub">
+          <button type="submit" className="btn btn-secondary" onClick={handleSubmit}>Add Club/Domain</button>
+        </div>):(<></>)}
+        {/* <div className="Addclub">
+          <button type="submit" className="btn btn-secondary" onClick={handleSubmit}>Add Club/Domain</button>
+        </div> */}
         <br></br>
         <br></br>
-        <div className="card-container">
+
           {uniqueTypes.map((type) => (
             <React.Fragment key={type}>
               {domains.some((ele) => ele.type === type) && (
@@ -48,7 +60,7 @@ export const Club = () => {
                   <br></br>
                 </>
               )}
-
+              <div className="card-container">
               {domains
                 .filter(
                   (ele) =>
@@ -75,13 +87,15 @@ export const Club = () => {
                     </div>
                   </Link>
                 ))}
+                
+              </div>
             </React.Fragment>
           ))}
-          {domains.length === 0 && <div>No Such Data Found</div>}
+          {<div>No Such Data Found</div>}
+          
         </div>
-      </div>
     </div>
-      
+
     </>
   );
 };

@@ -81,7 +81,6 @@ import { Header } from '../Components/header';
 
 export const Register = () =>
 {
-
     const navigate = useNavigate();
     const [user, setUser]= useState({
         username: "",
@@ -89,7 +88,7 @@ export const Register = () =>
         password: "",
     });
 
-    // const {storetokenInLS}=useAuth();
+    // const {storetokeninLS}=useAuth();
 
     // handling input variable
     const handleInput = (e)=>{
@@ -117,20 +116,30 @@ try {
 });
 if(response.ok)
 {
-    // contetx API
-    const res_data= await respose.json();
-    console.log("response from server",res_data);
-    // storetokenInLS(res_data.token);
-    localStorage.setItem("token",res_data.token);
+    // const res_data= await respose.json();
+    // console.log("response from server",res_data);
+    // storetokeninLS(res_data.token);
+    // localStorage.setItem("token",res_data.token);
     setUser(
         {username: "",
         email: "",
         password: ""});
         navigate("/login");
+        alert("User Created ! Please login!");
     
 }
-console.log(response);
-    
+else {
+    const responseData = await response.json();
+    if (responseData.msg === "user already exists") {
+        alert("User already exists. Please log in.");
+        navigate("/login");
+    } 
+    else
+    {
+        console.log(response);
+    }
+
+}
 } catch (error) {
     console.log("register",error);
     
@@ -145,16 +154,14 @@ console.log(response);
         <div className="block-1">
         <h5><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#A01022" class="bi bi-person-fill" viewBox="0 0 16 16">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-</svg><label htmlFor="user" className='usertext'>USER LOGIN</label></h5><br />
+</svg><label htmlFor="user" className='usertext'>USER SIGN IN</label></h5><br /><br />
 
 <form className="login-form" onSubmit={handleSubmit}>
 
-<input type="text" name="username" placeholder="Username" id="username" className="custom-field" required autoComplete="off" value={user.username} onChange={handleInput}/> 
-<input type="email" name="email" placeholder="Email ID" id="email" className="custom-field" required autoComplete="off" value={user.email} onChange={handleInput}/> <br />
-<input type="password" name="password" placeholder="password" className="custom-field" id="password" required autoComplete="off"  value={user.password} onChange={handleInput}/>
+<input type="text" name="username" placeholder="Username" id="usernamereg" className="Custom-Field" required autoComplete="off" value={user.username} onChange={handleInput}/>       
+<input type="email" name="email" placeholder="Email ID" id="email" className="Custom-Field" required autoComplete="off" value={user.email} onChange={handleInput}/> <br />
+<input type="password" name="password" placeholder="password" className="Custom-Field" id="password" required autoComplete="off"  value={user.password} onChange={handleInput}/>
 <br /><br />        <input type="submit"  className='Submit' value='REGISTER' />
-        
-
 </form>
             
         </div>

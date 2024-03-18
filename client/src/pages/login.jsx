@@ -49,7 +49,7 @@ if(response.ok)
     // alert(res_data.token);
     localStorage.setItem("token",res_data.token);
     localStorage.setItem("Admin",res_data.isAdmin);
-    alert("Login Successful");
+    alert(res_data.msg);
     setUser(
         {
         email: "",
@@ -58,7 +58,8 @@ if(response.ok)
     
 }
 else{
-    alert("Login Unsuccessful");
+    const res_data= await response.json();
+    alert(res_data.msg);
 }
 console.log(response);
     

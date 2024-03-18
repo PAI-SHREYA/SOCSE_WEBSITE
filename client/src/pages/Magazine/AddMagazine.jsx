@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import  "./AddMagazine.css"
+import  "./AddMagazine.css";
 
 export function AddMagazine() {
   const [image, setImage] = useState(null);

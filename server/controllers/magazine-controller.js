@@ -1,4 +1,4 @@
-const magazine = require("../models/magazine-model");
+const Magazine = require("../models/magazine-model");
 const express = require("express");
 const bodyParser= require("body-parser");
 const app = express();
@@ -7,7 +7,7 @@ app.use(express.json());
  const addMagazine= async (req,res)=>{
     try {
         const { title, year, imageUrl, pdfUrl } = req.body;
-        const magazine = new magazine({
+        const magazine = new Magazine({
           title,
           year,
           image: imageUrl,
@@ -26,7 +26,7 @@ app.use(express.json());
   // Endpoint to get magazine data
 const getMagazine= async (req,res)=>{
     try {
-      const magazines = await magazine.find({});
+      const magazines = await Magazine.find({});
       res.json({ status: "ok", data: magazines });
     } catch (error) {
       res.status(500).json({ status: "error", message: error.message });

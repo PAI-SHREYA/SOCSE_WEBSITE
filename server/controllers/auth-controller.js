@@ -1,5 +1,6 @@
 const express = require("express");
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const mongoose=require("mongoose");
 // const jsonParser = bodyParser.json()
 
 
@@ -94,19 +95,56 @@ const register = async (req, res) =>
 
 
 // to send user data
-const user = async (req,res) =>
-{
-  try {
-const userData=req.user;
-console.log(userData);
-return res.status(200).json({message: userData});
-    
-  } catch (error) {
-    console.log(`error from user route ${error}`);
-    
-  }
+const getuser= async (req, res) => {
+    try {
+      const users = await User.find();
+      res.status(200).json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
 
+
+  const DeleteUser= async (req, res) => {
+    const userId = req.query._id;
+
+    if (!mongoose.isValidObjectId(userId)) {
+        return res.status(400).send('Invalid user ID');
+    }
+
+    try {
+        const deletedUser = await User.findByIdAndDelete(userId);
+
+        if (!deletedUser) {
+            return res.status(404).send('User not found');
+        }
+
+        res.status(200).send({ message: 'User deleted successfully' });
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
 };
 
-module.exports = {home, login, register,user};
+const MakeAdmin= async (req, res) => {
+    const userId = req.query._id;
+
+    if (!mongoose.isValidObjectId(userId)) {
+        return res.status(400).send('Invalid user ID');
+    }
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(userId, { isAdmin: true }, { new: true });
+
+        if (!updatedUser) {
+            return res.status(404).send('User not found');
+        }
+
+        res.status(200).send(updatedUser);
+    } catch (error) {
+        res.status(500).send('Server error');
+    }
+};
+
+module.exports = {home, login, register,getuser,DeleteUser,MakeAdmin};
 

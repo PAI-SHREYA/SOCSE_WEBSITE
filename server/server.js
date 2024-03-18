@@ -6,6 +6,7 @@ const ContactRouter = require('./router/contact-router');
 const DomainRouter=require('./router/domain-router');
 const MagazineRouter=require('./router/magazine-router');
 const EventRouter=require('./router/event-router');
+const WorkRouter=require('./router/work-router');
 
 const connectDB = require('./utils/db');
 const errormiddleware = require("./middleware/error-middleware");
@@ -25,6 +26,7 @@ app.use("/api/form", ContactRouter);
 app.use("/api/domain",DomainRouter);
 app.use("/api/magazine",MagazineRouter);
 app.use("/api/programclub",EventRouter);
+app.use("/api/workshop",WorkRouter);
 
 app.use(errormiddleware);
 

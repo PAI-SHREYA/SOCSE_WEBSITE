@@ -19,7 +19,10 @@ router.route("/").get(authcontroller.home);
 // });
 router.route("/login").post(authcontroller.login);
 router.route("/register").post(validate(signupSchema) ,authcontroller.register);
-// router.route("/user").get(authMiddleware,authcontroller.user);
+router.route("/user").get(authcontroller.getuser);
+router.route("/makeAdmin").put(authcontroller.MakeAdmin);
+router.route("/delete").delete(authcontroller.DeleteUser);
+
 
 
 
