@@ -15,12 +15,14 @@ import { AddMagazine } from "./pages/Magazine/AddMagazine";
 
 const App = () =>
 {
+  const isLoginPage = location.pathname === "/login" || location.pathname === "/register";
   return (
     <>
     {/* <Navbar></Navbar> */}
     {/* <h1>Hello</h1> */}
     <BrowserRouter>
-    <Navbar></Navbar>
+    {!isLoginPage && <Navbar />}
+    {/* <Navbar></Navbar> */}
     <Routes>
         <Route path="/" element= {<Home />} />
         {/* <Route path="/about" element= {<About />} /> */}

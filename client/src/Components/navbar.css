@@ -1,19 +1,55 @@
-.container
-{
-   
-    padding: 4.2rem 4.2rem;
-    display: flex;
-    justify-content: space-between;
-}
-ul
-{
-    text-decoration: none;
-    display: flex;
-    gap: 3.2rem;
-}
-*
-{
-    /* background-color: rgb(19, 19, 19); */
-    /* width: 40px;
-    height: 50px; */
-}
+/* navbar.css */
+
+.navbar {
+    background-color: #343a40; /* Set your desired background color */
+    color: #ffffff; /* Set your desired text color */
+  }
+  
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .navbar-nav {
+    margin-left: auto;
+    display: flex; /* Arrange items horizontally */
+    align-items: center; /* Center items vertically in flex container */
+  }
+  
+  .navbar-item {
+    margin-right: 15px;
+    list-style: none; /* Remove bullet points */
+  }
+  
+  .nav-link {
+    color: #ffffff; /* Set your desired link color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px 15px; /* Add padding */
+    display: inline-block; /* Ensure proper button-like design */
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add transitions for hover effect */
+    position: relative;
+  }
+  
+  .nav-link:hover {
+    background-color: #555; /* Set your desired hover color */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add emboss effect on hover */
+  }
+  
+  .logout-btn {
+    background-color: #dc3545; /* Set your desired logout button color */
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Add transitions for hover effect */
+  }
+  
+  .logout-btn:hover {
+    background-color: #bd2130; /* Set your desired hover color */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add emboss effect on hover */
+  }
+  
+  /* Add more styles as needed */
+  

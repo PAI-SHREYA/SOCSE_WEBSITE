@@ -75,7 +75,7 @@ function MagazineSection() {
 
         <button onClick={resetFilters}>Reset Filters</button>
         {/* <button className="butt" onClick={handleLoginClick}>Admin Login</button> */}
-        {Admin ? ( <button className="butt1" onClick={handleLoginClick1}>Add Magazine</button>):(<></>)}
+        {(Admin==="true") ? ( <button className="butt1" onClick={handleLoginClick1}>Add Magazine</button>):(<></>)}
                     
        
       </div>

@@ -70,6 +70,11 @@ export const Navbar = () =>
             </Link>
           </li>
           <li className="navbar-item">
+            <Link to="/calender" className="nav-link">
+              Agenda
+            </Link>
+          </li>
+          <li className="navbar-item">
             <Link to="/clubs" className="nav-link">
               Clubs
             </Link>

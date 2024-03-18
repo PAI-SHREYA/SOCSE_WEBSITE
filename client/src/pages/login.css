@@ -221,6 +221,35 @@
       position: relative;
       top: -100px;
     }
+
+    @media only screen and (max-width: 1200px) {
+      .block {
+          width: 100%;
+      }
+  
+      .block-1,
+      .block-2 {
+          width: 100%;
+          float: none;
+          margin: 0;
+          box-sizing: border-box;
+          padding: 1rem;
+          text-align: center;
+      }
+  
+      .block-2 {
+          top: 0;
+          right: 0;
+      }
+  
+      .custom-field,
+      .Submit {
+          width: 100%;
+          left: 0;
+          margin: 0;
+      }
+  }
+  
   
   
   

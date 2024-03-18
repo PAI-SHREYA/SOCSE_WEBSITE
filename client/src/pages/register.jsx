@@ -70,7 +70,7 @@
 // };
 
 
-import './login.css';
+import './register.css';
 import { useState } from 'react';
 import {useNavigate} from "react-router-dom";
 import { Header } from '../Components/header';
@@ -81,6 +81,7 @@ import { Header } from '../Components/header';
 
 export const Register = () =>
 {
+
     const navigate = useNavigate();
     const [user, setUser]= useState({
         username: "",
@@ -88,7 +89,7 @@ export const Register = () =>
         password: "",
     });
 
-    // const {storetokeninLS}=useAuth();
+    // const {storetokenInLS}=useAuth();
 
     // handling input variable
     const handleInput = (e)=>{
@@ -116,10 +117,11 @@ try {
 });
 if(response.ok)
 {
-    // const res_data= await respose.json();
-    // console.log("response from server",res_data);
-    // storetokeninLS(res_data.token);
-    // localStorage.setItem("token",res_data.token);
+    // contetx API
+    const res_data= await respose.json();
+    console.log("response from server",res_data);
+    // storetokenInLS(res_data.token);
+    localStorage.setItem("token",res_data.token);
     setUser(
         {username: "",
         email: "",
@@ -143,14 +145,16 @@ console.log(response);
         <div className="block-1">
         <h5><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#A01022" class="bi bi-person-fill" viewBox="0 0 16 16">
   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-</svg><label htmlFor="user" className='usertext'>USER LOGIN</label></h5><br /><br />
+</svg><label htmlFor="user" className='usertext'>USER LOGIN</label></h5><br />
 
 <form className="login-form" onSubmit={handleSubmit}>
 
-<input type="text" name="username" placeholder="Username" id="username" className="custom-field" required autoComplete="off" value={user.username} onChange={handleInput}/> <br />        
+<input type="text" name="username" placeholder="Username" id="username" className="custom-field" required autoComplete="off" value={user.username} onChange={handleInput}/> 
 <input type="email" name="email" placeholder="Email ID" id="email" className="custom-field" required autoComplete="off" value={user.email} onChange={handleInput}/> <br />
 <input type="password" name="password" placeholder="password" className="custom-field" id="password" required autoComplete="off"  value={user.password} onChange={handleInput}/>
 <br /><br />        <input type="submit"  className='Submit' value='REGISTER' />
+        
+
 </form>
             
         </div>
